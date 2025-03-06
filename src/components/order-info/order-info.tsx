@@ -1,8 +1,9 @@
+// order-info.tsx
 import { FC, useEffect, useMemo, useState } from 'react';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient, TOrder } from '@utils-types';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/store';
 import { RootState } from '../../services/store';
 import { useParams } from 'react-router-dom';
 import { getOrderByNumberApi } from '@api';
@@ -24,9 +25,11 @@ export const OrderInfo: FC = () => {
 
   useEffect(() => {
     getOrderByNumberApi(Number(id)).then((data) => {
-      setOrder(data.orders[0]);
+      if (data.orders && data.orders.length) {
+        setOrder(data.orders[0]);
+      }
     });
-  }, []);
+  }, [id]); // Добавьте id в зависимости useEffect
 
   const orderInfo = useMemo(() => {
     if (!order || !ingredients.length) return null;

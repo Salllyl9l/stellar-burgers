@@ -1,7 +1,7 @@
 import { FC, useMemo, useCallback } from 'react';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/store';
 import { useNavigate } from 'react-router-dom';
 import {
   AppDispatch,
@@ -12,8 +12,7 @@ import { newOrder, resetOrder } from '../../slices/newOrderSlice';
 import { clearAll } from '../../slices/burgerConstructor';
 
 export const BurgerConstructor: FC = () => {
-  /** Получаем данные из стора */
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const constructorItems = useSelector(
@@ -50,7 +49,6 @@ export const BurgerConstructor: FC = () => {
     dispatch(clearAll());
     navigate('/');
   }, [dispatch, navigate]);
-
   const price = useMemo(
     () =>
       (constructorItems.bun ? constructorItems.bun.price * 2 : 0) +

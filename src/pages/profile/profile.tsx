@@ -1,12 +1,13 @@
+// profile.tsx
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/store';
 import { AppDispatch, RootState } from '../../services/store';
 import { updateUser } from '../../slices/userSlice';
 import { TRegisterData } from '@api';
 
 export const Profile: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch(); // Используйте типизированный dispatch
   const user = useSelector((store: RootState) => store.user.user);
 
   const [formValue, setFormValue] = useState<TRegisterData>({

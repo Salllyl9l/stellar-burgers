@@ -16,14 +16,13 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { ProtectedRoute } from '../protected-route';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../services/store';
+import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
 import { getUser } from '../../slices/userSlice';
 import { getInridients } from '../../slices/ingredientsSlice';
 
 const App = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
