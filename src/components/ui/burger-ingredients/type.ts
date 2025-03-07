@@ -14,3 +14,4 @@ export type BurgerIngredientsUIProps = {
   saucesRef: (node?: Element | null | undefined) => void;
   onTabClick: (val: string) => void;
 };
+
